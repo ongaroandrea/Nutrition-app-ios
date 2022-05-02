@@ -11,8 +11,6 @@
 		CB70F9BE282060F200F98B2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9BD282060F200F98B2B /* ContentView.swift */; };
 		CB70F9C0282060F300F98B2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB70F9BF282060F300F98B2B /* Assets.xcassets */; };
 		CB70F9C3282060F300F98B2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB70F9C2282060F300F98B2B /* Preview Assets.xcassets */; };
-		CB70F9C5282060F300F98B2B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9C4282060F300F98B2B /* Persistence.swift */; };
-		CB70F9C8282060F300F98B2B /* Progetto_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9C6282060F300F98B2B /* Progetto_Mobile.xcdatamodeld */; };
 		CB70F9D2282060F300F98B2B /* Progetto_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9D1282060F300F98B2B /* Progetto_MobileTests.swift */; };
 		CB70F9DC282060F300F98B2B /* Progetto_MobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9DB282060F300F98B2B /* Progetto_MobileUITests.swift */; };
 		CB70F9DE282060F300F98B2B /* Progetto_MobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70F9DD282060F300F98B2B /* Progetto_MobileUITestsLaunchTests.swift */; };
@@ -41,8 +39,6 @@
 		CB70F9BD282060F200F98B2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CB70F9BF282060F300F98B2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB70F9C2282060F300F98B2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CB70F9C4282060F300F98B2B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		CB70F9C7282060F300F98B2B /* Progetto_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Progetto_Mobile.xcdatamodel; sourceTree = "<group>"; };
 		CB70F9CD282060F300F98B2B /* Progetto MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Progetto MobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB70F9D1282060F300F98B2B /* Progetto_MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progetto_MobileTests.swift; sourceTree = "<group>"; };
 		CB70F9D7282060F300F98B2B /* Progetto MobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Progetto MobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,8 +97,6 @@
 				CB70F9BB282060F200F98B2B /* Progetto_MobileApp.swift */,
 				CB70F9BD282060F200F98B2B /* ContentView.swift */,
 				CB70F9BF282060F300F98B2B /* Assets.xcassets */,
-				CB70F9C4282060F300F98B2B /* Persistence.swift */,
-				CB70F9C6282060F300F98B2B /* Progetto_Mobile.xcdatamodeld */,
 				CB70F9C1282060F300F98B2B /* Preview Content */,
 			);
 			path = "Progetto Mobile";
@@ -263,10 +257,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB70F9C5282060F300F98B2B /* Persistence.swift in Sources */,
 				CB70F9BE282060F200F98B2B /* ContentView.swift in Sources */,
 				CB70F9BC282060F200F98B2B /* Progetto_MobileApp.swift in Sources */,
-				CB70F9C8282060F300F98B2B /* Progetto_Mobile.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,19 +583,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CB70F9C6282060F300F98B2B /* Progetto_Mobile.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CB70F9C7282060F300F98B2B /* Progetto_Mobile.xcdatamodel */,
-			);
-			currentVersion = CB70F9C7282060F300F98B2B /* Progetto_Mobile.xcdatamodel */;
-			path = Progetto_Mobile.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CB70F9B0282060F200F98B2B /* Project object */;
 }
