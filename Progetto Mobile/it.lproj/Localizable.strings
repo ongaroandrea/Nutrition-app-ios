@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  Progetto Mobile
+
+  Created by Andrea  Ongaro on 02/05/22.
+  
+*/
+
+"welcome" = "Benvenuto";
+"titolo_1" = "Dietetica";
+"testo_1" = "Programmazione nutrizionale personalizzata finalizzata al miglioramento dello stato di salute, della composizione corporea";
+"titolo_2" = "Nutrizione Sportiva";
+"testo_2" = "Valutazione dei fabbisogni energetici e nutrizionali del soggetto sportivo e programmazione dietetica";
+"titolo_3" = "Analisi Composizione Corporea";
+"testo_3" = "Valutazione della composizione corporea con analisi antropo-plicometrica  e  bioimpedenziometrica";
+"contattami" = "Contattami";
+"contattato_giacomo" = "Hai già contattato Giacomo?";
+"testo_bottone" = "Entra Pure";
+

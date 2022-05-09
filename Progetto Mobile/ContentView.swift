@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
 
+    let welcome:LocalizedStringKey = "welcome"
     var body: some View {
-       Text("Ciao ")
+       Text(welcome)
     }
 }
 
