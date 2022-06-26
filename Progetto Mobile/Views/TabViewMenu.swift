@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+//https://www.youtube.com/watch?v=Y4Tc-68d5BE
 struct TabViewMenuView: View {
+    @EnvironmentObject var authenticationManager: AuthenticationManager
+    @EnvironmentObject private var opdata: OpDat
     @State var selectedTab: MenuTab = .home
     @State var color:Color = .gray
     var body: some View {
@@ -17,12 +20,14 @@ struct TabViewMenuView: View {
                 switch selectedTab {
                 case .home:
                     HomeView()
-                case .explore:
-                    ChartsView()
-                case .notifications:
-                    CalendarView()
-                case .library:
-                    AccountView()
+                case .riceps:
+                    ListSensationView()
+                case .calendar:
+                    WaterAnimation(id: "2")
+                case .settings:
+                    SettingsView()
+                        .environmentObject(opdata)
+                        .environmentObject(authenticationManager)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -57,19 +62,19 @@ struct TabViewMenuView: View {
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 34, style: .continuous))
             .background(
                 HStack{
-                    if selectedTab == .library { Spacer()}
-                    if selectedTab == .explore { Spacer()}
-                    if selectedTab == .explore { Spacer(); Spacer()}
+                    if selectedTab == .settings { Spacer()}
+                    if selectedTab == .riceps { Spacer()}
+                    if selectedTab == .calendar {Spacer(); Spacer()}
                     Circle().fill(color).frame(width:55).padding()
                     if selectedTab == .home { Spacer()}
-                    if selectedTab == .explore { Spacer(); Spacer()}
-                    if selectedTab == .notifications {Spacer()}
+                    if selectedTab == .riceps { Spacer(); Spacer();}
+                    if selectedTab == .calendar {Spacer()}
             })
             .overlay(
                 HStack{
-                    if selectedTab == .library { Spacer()}
-                    if selectedTab == .explore { Spacer()}
-                    if selectedTab == .explore { Spacer(); Spacer()}
+                    if selectedTab == .settings { Spacer()}
+                    if selectedTab == .riceps { Spacer()}
+                    if selectedTab == .calendar {Spacer(); Spacer()}
                     Rectangle()
                         .fill(color)
                         .frame(width: 28, height: 5)
@@ -77,8 +82,8 @@ struct TabViewMenuView: View {
                         .frame(width:88)
                         .frame(maxHeight: .infinity, alignment: .top)
                     if selectedTab == .home { Spacer()}
-                    if selectedTab == .explore { Spacer(); Spacer()}
-                    if selectedTab == .notifications {Spacer()}
+                    if selectedTab == .riceps { Spacer(); Spacer();}
+                    if selectedTab == .calendar {Spacer()}
                 }
                     .padding(.horizontal, 9)
             )

@@ -10,58 +10,43 @@ import SwiftUI
 struct CalendarView: View {
     
     let textLoc : LocalizedStringKey = "welcome"
+    @State var isCreatePresented = false
+    @StateObject var viewModel: visitVM = visitVM()
+    
     var body: some View {
-        VStack{
-            Text(textLoc)
-                .font(.title)
-                .foregroundColor(Color("light_blue"))
-                .bold()
-            
-            VStack{
-                RoundedRectangle( cornerRadius: 10)
-                    
-                    .strokeBorder(.gray, lineWidth: 1)
-                    .frame(width: 300, height: 135)
-                    .background(Color("light_blue"))
+        NavigationView {
+            VStack(spacing: 10){
+                Text("Calendario Appuntamenti")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("Primary"))
                 
-                    .shadow(radius: 5)
-                    .overlay(
-                        VStack(alignment: .leading){
-                            Text("Consulto Periodico")
-                                .bold()
-                            
-                            Text("Data: 26/02")
-                            
-                            Text("Aggiungi al calendario > ")
-                                .foregroundColor(.white)
-                                .padding(10)
-                                .background(.mint)
-                                .cornerRadius(10)
-                        }
-                    )
-                    .padding(.vertical)
-                RoundedRectangle( cornerRadius: 10)
-                    .strokeBorder(.gray, lineWidth: 1)
-                    .frame(width: 300, height: 100)
-                    .background(Color("light_blue"))
-                    .shadow(radius: 10)
-                    .overlay(
-                        VStack(alignment: .leading){
-                            Text("Consulto Periodico")
-                                .bold()
-                            
-                            Text("Data: 26/02")
-                            
-                            Text("Aggiungi al calendario > ")
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(.mint)
-                                .cornerRadius(10)
-                        }
-                    )
-                
+                List {
+                    ForEach(viewModel.listVisits){ visit in
+                        CalendarRectangle(id: visit.id, date: visit.date)
+                    }
+                }
+                .listStyle(.plain)
+                .navigationBarItems(trailing: Button {
+                    self.isCreatePresented.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .imageScale(.large)
+                })
+                .sheet(isPresented: $isCreatePresented) {
+                    NavigationView {
+                        CreateVisit(visitManager: viewModel, isPresented: self.$isCreatePresented)
+                    }
+                    .accentColor(.primary)
+                }
             }
+            .onAppear(perform: {
+                self.viewModel.getAllVisitByUserID()                
+            })
+            .navigationTitle("")
+            .padding(.top, -40)
         }
+        .frame(width: .infinity, height: .infinity, alignment: .topLeading)
     }
 }
 

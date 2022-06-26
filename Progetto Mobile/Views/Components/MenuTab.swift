@@ -17,15 +17,15 @@ struct MenuTabItem: Identifiable {
 }
 
 var menuTabItem = [
-    MenuTabItem(text: "Learn Now", icon: "house", tab: .home, color: .teal),
-    MenuTabItem(text: "Explore", icon: "magnifyingglass", tab: .explore, color: .teal),
-    MenuTabItem(text: "Notification", icon: "house", tab: .notifications, color: .teal),
-    MenuTabItem(text: "Library", icon: "house", tab: .library, color: .teal)
+    MenuTabItem(text: "Home", icon: "house", tab: MenuTab.home, color: .teal),
+    MenuTabItem(text: "Ricette", icon: "magnifyingglass", tab: MenuTab.riceps, color: .orange),
+    MenuTabItem(text: "Calendario", icon: "calendar", tab: MenuTab.calendar, color: .red),
+    MenuTabItem(text: "Impostazioni", icon: "gear", tab: MenuTab.settings, color: .gray)
 ]
 
 enum MenuTab:String {
     case home
-    case explore
-    case notifications
-    case library
+    case riceps
+    case calendar
+    case settings
 }

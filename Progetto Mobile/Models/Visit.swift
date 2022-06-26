@@ -9,10 +9,28 @@ import Foundation
 import GRDB
 
 struct Visit: Identifiable{
-    let id: Int64
-    let date: String
-    let userID: Int64
+    let id: String
+    let date: Date
+    let userID: String
+    
+    init(id: String, date: Date, userID: String){
+        self.id = id
+        self.date = date
+        self.userID = userID
+    }
+    
+    init(date: Date, userID: String){
+        self.id = UUID().uuidString
+        self.date = date
+        self.userID = userID
+    }
 }
 
 //To work with GRDB
-extension Visit: Codable, FetchableRecord, PersistableRecord {}
+extension Visit: Codable, FetchableRecord, PersistableRecord {
+    static let databaseTableName = "visit"
+}
+
+
+
+

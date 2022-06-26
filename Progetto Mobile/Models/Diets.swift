@@ -8,8 +8,17 @@
 import Foundation
 import GRDB
 
-struct Diets: Identifiable{
+struct Diet: Identifiable{
     let id: Int64
+    let visitID: Int64
+    
+    init(id: Int64, visitID: Int64){
+        self.id = id
+        self.visitID = visitID
+    }
 }
 
-extension Diets: Codable, FetchableRecord, PersistableRecord {}
+extension Diet: Codable, FetchableRecord, PersistableRecord {
+    static let databaseTableName: String = "diets"
+}
+

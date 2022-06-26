@@ -14,12 +14,13 @@ struct Tab: View {
     var textImage: LocalizedStringKey
     
     var body: some View {
-        VStack (spacing: 30){
+        VStack {
             Image(nameImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(50)
-                .frame(width: 250, height: 250, alignment: .center)
+                .scaledToFit()
+                .frame(width: UIScreen.main.bounds.size.width / 2, height: UIScreen.main.bounds.size.height / 4, alignment: .center)
             
             Text(titleImage)
                 .fontWeight(.semibold)
@@ -36,6 +37,6 @@ struct Tab: View {
 
 struct Tab_Previews: PreviewProvider {
     static var previews: some View {
-        Tab(nameImage: "image_1",titleImage:"Dieta", textImage: "Testo lungo")
+        Tab(nameImage: "first", titleImage:"Dieta", textImage: "Testo lungo")
     }
 }

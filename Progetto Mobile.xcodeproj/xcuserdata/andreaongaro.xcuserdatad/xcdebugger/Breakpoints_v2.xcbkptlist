@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "7BEFE9E4-5C27-40C1-B7D3-B25CD34A81F7"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38D5FAAD-E4E5-4D05-99CE-F7C639521965"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Progetto Mobile/Views/NotificationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "infoOverlayView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34DE04D1-568B-452B-8B44-663300156244"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Progetto Mobile/Views/NotificationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4850B8E3-46F2-4A51-BA1D-41FFCC9541B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Progetto Mobile/Views/AccountView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "4850B8E3-46F2-4A51-BA1D-41FFCC9541B5 - 2bb825c68a34d7ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Progetto_Mobile.AccountView.body.getter : some"
+                  moduleName = "Progetto Mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreaongaro/Documents/Universita%CC%80/3%C2%B0%20ANNO/2%C2%B0%20SEMESTRE/Sistemi%20Mobile/Progetto/Codice/Progetto%20Mobile/Progetto%20Mobile/Views/AccountView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "1388">
+               </Location>
+               <Location
+                  uuid = "4850B8E3-46F2-4A51-BA1D-41FFCC9541B5 - 564543233348e6e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.ModifiedContent&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.foregroundColor(Swift.Optional&lt;SwiftUI.Color&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.disableAutocorrection(Swift.Optional&lt;Swift.Bool&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, Progetto_Mobile.customViewModifier&gt;, SwiftUI.ModifiedContent&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.foregroundColor(Swift.Optional&lt;SwiftUI.Color&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.disableAutocorrection(Swift.Optional&lt;Swift.Bool&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, Progetto_Mobile.customViewModifier&gt;, SwiftUI.ModifiedContent&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.foregroundColor(Swift.Optional&lt;SwiftUI.Color&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.disableAutocorrection(Swift.Optional&lt;Swift.Bool&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, Progetto_Mobile.customViewModifier&gt;, SwiftUI.ModifiedContent&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.foregroundColor(Swift.Optional&lt;SwiftUI.Color&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.disableAutocorrection(Swift.Optional&lt;Swift.Bool&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, Progetto_Mobile.customViewModifier&gt;, SwiftUI.ModifiedContent&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.foregroundColor(Swift.Optional&lt;SwiftUI.Color&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.disableAutocorrection(Swift.Optional&lt;Swift.Bool&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, Progetto_Mobile.customViewModifier&gt;, &lt;&lt;opaque return type of SwiftUI.View.clipShape&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.Shape&gt;(_: &#x3c4;_1_0, style: SwiftUI.FillStyle) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in Progetto_Mobile.AccountView.body.getter : some"
+                  moduleName = "Progetto Mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreaongaro/Documents/Universita%CC%80/3%C2%B0%20ANNO/2%C2%B0%20SEMESTRE/Sistemi%20Mobile/Progetto/Codice/Progetto%20Mobile/Progetto%20Mobile/Views/AccountView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "4396">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

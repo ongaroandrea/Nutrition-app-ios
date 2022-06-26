@@ -1,78 +1,129 @@
 //
-//  Account.swift
-//  test
+//  AccountView.swift
+//  Progetto Mobile
 //
-//  Created by Andrea  Ongaro on 27/03/22.
+//  Created by Andrea  Ongaro on 20/05/22.
 //
 
 import SwiftUI
 
 struct AccountView: View {
     
+    @StateObject private var viewModel: UserVM = UserVM()
+    
+    @State private var nome: String = ""
+    @State private var cognome: String = ""
+    @State private var mail: String = ""
+    @State private var sport: String = ""
+    @State private var password: String = ""
+    @State private var showingAlert = false
+    @State private var showingAlertError = false
+    private var error : LocalizedStringKey = "errore"
+    private var successo : LocalizedStringKey = "successo"
+    private var valori_non_modificati : LocalizedStringKey = "valori_non_modificati"
+    private var valori_modificati : LocalizedStringKey = "valori_modificati"
+    private var titolo_modifica_dati : LocalizedStringKey = "titolo_modifica_dati"
+    private var impostazioni : LocalizedStringKey = "impostazioni"
+    
     var body: some View {
-        VStack(spacing: 20){
-            Image("logo_180")
-                .clipShape(Circle())
-                .shadow(radius: 10)
-                .overlay(Circle().stroke(Color("accentColor"), lineWidth: 5))
-            
-            Text("Andrea Ongaro")
+        VStack{
+            Text(titolo_modifica_dati.stringValue())
                 .font(.title)
-                .foregroundColor(.black)
+                .fontWeight(.bold)
+                .foregroundColor(Color("Primary"))
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("AccentColor"))
+                TextField(viewModel.userLogged?.name ?? "", text: $nome)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+            .modifier(customViewModifier(roundedCornes: 20, textColor: .white))
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("AccentColor"))
+                TextField(viewModel.userLogged?.surname ?? "", text: $cognome)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+            .modifier(customViewModifier(roundedCornes: 20, textColor: .white))
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("AccentColor"))
+                TextField(viewModel.userLogged?.email ?? "", text: $mail)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+            .modifier(customViewModifier(roundedCornes: 20, textColor: .white))
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("AccentColor"))
+                TextField(viewModel.userLogged?.sport ?? "", text: $sport)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+            .modifier(customViewModifier(roundedCornes: 20, textColor: .white))
+            
+            HStack{
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("AccentColor"))
+                SecureField("password", text: $password)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            }
+            .modifier(customViewModifier(roundedCornes: 20, textColor: .white))
+            
+            Button("Modifica") {
+                print("Login")
+                print(mail)
+                print(password)
                 
-            Text("Sportivo - Calisthenics")
-                .foregroundColor(.black)
-                .opacity(0.45)
-            
-            
-                NavigationView{
-                    List{
-                        NavigationLink {
-                            Text("")
-                        } label: {
-                            Label {
-                                Text("Modifica Dati")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                    .opacity(0.50)
-                                    .padding(.horizontal, 10)
-                            } icon: {
-                                Image(systemName: "person.fill")
-                                    .font(.title)
-                                    .foregroundColor(.accentColor)
-                                    .padding(10)
-                                    .background(Color("light_yellow"))
-                                    .cornerRadius(10)
-                            }
-                        }
-                        .padding(.vertical, 11.0)
-                        .padding(.horizontal, 11.0)
-                        .listRowSeparator(.hidden)
-                        
-                        
-                    }
-                    .listStyle(PlainListStyle())
-                    .navigationBarTitle("")
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
+                let result = viewModel.updateUser(name: nome, surname: cognome, sport: sport, password: password, email: mail)
+                if(!result){
+                    print("Loggato Correttamente")
+                    showingAlert = true
+                    showingAlertError = false
+                } else {
+                    showingAlert = false
+                    showingAlertError = true
+                    print("NON")
                 }
-                
-                
+            }
+            .padding()
+            .background(Color("AccentColor"))
+            .foregroundColor(.white)
+            .buttonStyle(.borderedProminent)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .alert(isPresented: $showingAlertError) {
+                Alert(title: Text(error.stringValue()), message: Text(valori_non_modificati.stringValue()), dismissButton: .default(Text("Ok!")))
+            }
+            Spacer()
             
-               
-        }.padding(10)
-        
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text(successo.stringValue()), message: Text(valori_modificati.stringValue()), dismissButton: .default(Text("Ok!")))
+        }
+        .padding()
         .onAppear(perform: {
-            UITableView.appearance().backgroundColor = .clear
+            viewModel.setCurrentUser()
+            nome = viewModel.userLogged?.name ?? ""
+            cognome = viewModel.userLogged?.surname ?? ""
+            mail = viewModel.userLogged?.email ?? ""
+            sport = viewModel.userLogged?.sport ?? ""
+            password = viewModel.userLogged?.password ?? ""
+            
         })
-        .onDisappear(perform: {
-            UITableView.appearance().backgroundColor = UIColor.systemBackground
-        })
-    }
+        .navigationTitle(impostazioni.stringValue())
+        .navigationBarTitleDisplayMode(.inline)
         
+    }
 }
 
-struct Account_Previews: PreviewProvider {
+struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         AccountView()
     }

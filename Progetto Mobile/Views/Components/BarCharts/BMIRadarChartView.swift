@@ -9,8 +9,9 @@ import Charts
 import SwiftUI
 
 struct BMIRadarChartView: UIViewRepresentable {
-    
+        
     let entries: [RadarChartDataEntry]
+    
     func makeUIView(context: Context) -> RadarChartView {
         return RadarChartView()
     }

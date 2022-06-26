@@ -10,145 +10,141 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var isShowingDetailView = false
-    
+    @StateObject var viewModel: UserVM = UserVM()
+    @StateObject var viewModelVisit: DietsVM = DietsVM()
+
+    var testo_risultati: LocalizedStringKey = "testo_risultati"
+    var saluti: LocalizedStringKey = "saluti"
+    var visualize_diets: LocalizedStringKey = "visualize_diets"
+    var scopri: LocalizedStringKey = "scopri"
+    var recipes_available: LocalizedStringKey = "recipes_available"
+    var visualizza: LocalizedStringKey = "visualize"
+    var diet: LocalizedStringKey = "dieta"
     var body: some View {
-        VStack(spacing: 20) {
-            
-            VStack(spacing: 5){
-                Text("Ciao Andrea Ongaro,")
-                    .font(.title2)
-                    .bold()
-                    .foregroundColor(Color("light_blue"))
+        NavigationView {
+            ScrollView{
+                VStack(spacing: 20) {
+                    VStack(spacing: 5){
+                        Text(saluti.stringValue() + " " + String(viewModel.userLogged?.name ?? "test"))
+                            .font(.title2)
+                            .bold()
+                            .foregroundColor(Color("AccentColor"))
+                        
+                        Text(visualize_diets)
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.top, 20)
                     
-                Text("visualizza la tua dieta qui")
-                    .font(.footnote)
-                    .bold()
-                    .foregroundColor(.gray)
-            }
-            .padding(.top, 20)
-            
-            VStack{
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.orange)
-                    .opacity(0.15)
-                    .frame(width: 360, height: 200)
-                    .overlay(
-                        HStack{
-                            HStack{
-                                VStack(alignment: .leading, spacing: 10){
-                                    Text("SCOPRI")
-                                        .foregroundColor(.red)
-                                        .bold()
-                                        .font(.footnote)
-                                    Text("Le ricette disponibili")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Button{
-                                        print("action")
-                                    } label: {
-                                        Text("Visualizza")
-                                            .bold()
-                                            .padding(.horizontal, 15)
-                                            .padding(.vertical, 8)
-                                            .background(.red)
-                                            .opacity(0.25)
-                                            .foregroundColor(.red)
-                                            .cornerRadius(15)
+                    VStack{
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(.orange)
+                            .opacity(0.15)
+                            .frame(width: UIScreen.main.bounds.size.width - 20, height: 200)
+                            .overlay(
+                                HStack{
+                                    HStack{
+                                        Spacer()
+                                        VStack(alignment: .leading, spacing: 10){
+                                            Text(scopri)
+                                                .foregroundColor(.red)
+                                                .bold()
+                                                .font(.footnote)
+                                            Text(recipes_available)
+                                                .foregroundColor(Color("TextColor"))
+                                                .bold()
+                                                .font(.title3)
+                                            NavigationLink(destination: ListRecipesView(padding: -40)){
+                                                Text(visualizza)
+                                                    .bold()
+                                                    .padding(.horizontal, 15)
+                                                    .padding(.vertical, 8)
+                                                    .background(Color(red: 255, green: 0, blue: 0, opacity: 0.25))
+                                                    .foregroundColor(.white)
+                                                    .cornerRadius(15)
+                                            }
+                                        }
                                         
+                                        Spacer()
+                                        VStack{
+                                            Image("Fruits")
+                                                .resizable()
+                                                .frame(width: 150, height: 150)
+                                                .aspectRatio(contentMode: .fit)
+                                                .font(.largeTitle)
+                                        }
+                                        
+                                        Spacer()
                                     }
                                 }
-                                
-                                VStack{
-                                    Image(systemName: "brain")
-                                        .font(/*@START_MENU_TOKEN@*/.largeTitle/*@END_MENU_TOKEN@*/)
+                            )
+                    }
+                    
+                    
+                    VStack{
+                        RoundedRectangle(cornerRadius: 15)
+                            .foregroundColor(.pink)
+                            .opacity(0.35)
+                            .frame(width: UIScreen.main.bounds.size.width - 20, height: 100)
+                            .overlay(
+                                VStack {
+                                    HStack{
+                                        Spacer()
+                                        Text(testo_risultati)
+                                            .font(.title3)
+                                            .foregroundColor(.white)
+                                            .bold()
+                                        Spacer()
+                                        NavigationLink(destination: ChartsView(id: "2")){
+                                            Text(visualizza)
+                                                .foregroundColor(.pink)
+                                                .bold()
+                                                .padding(.horizontal, 15)
+                                                .padding(.vertical, 8)
+                                                .background(.white)
+                                                .cornerRadius(15)
+                                        }
+                                        Spacer()
+                                    }
                                 }
-                                
+                            )
+                    }
+                    
+                    VStack{
+                        HStack{
+                            Text(diet)
+                                .fontWeight(.bold)
+                                .font(.system(size: 20))
+                                .foregroundColor(Color("TextColor"))
+                            Spacer()
+                        }
+                        .foregroundColor(.black)
+                        .padding(.leading)
+                        .padding(.top, 20)
+                        .padding(.trailing)
+                        
+                        
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack(spacing: 20){
+                                ForEach(dietsTabItem, content: { tab in
+                                    NavigationLink(destination: DietsView(viewModel: DietsVM(), id: Int64(tab.day), idVisit: viewModelVisit.lastIDVisit)){
+                                        DietsButton(text: tab.text, icon: tab.icon, color: tab.color)
+                                    }
+                                })
                             }
                         }
-                    )
-            }
-            
-           
-            VStack{
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.pink)
-                    .opacity(0.35)
-                    .frame(width: 360, height: 100)
-                    .overlay(
-                        VStack {
-                            HStack{
-                                Text("Monitora i tuoi risultati")
-                                    .foregroundColor(.white)
-                                    .bold()
-                                
-                                Button{
-                                    print("action")
-                                } label: {
-                                    Text("Visualizza")
-                                        .bold()
-                                        .padding(.horizontal, 15)
-                                        .padding(.vertical, 8)
-                                        .background(.white)
-                                        .cornerRadius(15)
-                                    
-                                }
-                            }
-                            
-                            
-                        }
-                    )
-            }
-            
-            VStack{
-                HStack{
-                        Text("Dieta")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                    
-                    Spacer()
-                    
-                    Button(action: {}) {
-                        Image(systemName: "ellipsis")
-                            .font(.title)
+                        .padding(.trailing)
                     }
+                    .padding(.leading)
                 }
-                .foregroundColor(.black)
-                .padding(.leading)
-                .padding(.top, 20)
-                .padding(.trailing)
-                
-                ScrollView(.horizontal, showsIndicators: false){
-                    
-                    HStack(spacing: 15){
-                        GeometryReader{ geometry in
-                            RoundedRectangle(cornerRadius: 25)
-                                            .foregroundColor(.blue)
-                                            .shadow(color: .blue, radius: 5)                                            //.opacity(0.15)
-                                            .frame(width: 150, height: 250)
-                                            .overlay(
-                                                VStack{
-                                                    Image(systemName: "sunrise.fill")
-                                                        .foregroundColor(.black)
-                                                        .font(.title)
-                                                        .padding(.bottom, 10)
-                                                    Text("1 Giorno")
-                                                        .bold()
-                                                        
-                                                }
-                                            )
-                                            .onTapGesture {
-                                                print("clicled")
-                                            }
-                                            .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX) / -20), axis: (x:0, y: 10.0, z:0))
-                            
-                            
-                        }
-                    }
-                }
-                .padding(.leading)
             }
+              .onAppear(perform: {
+                  self.viewModel.setCurrentUser()
+              })
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
-        
     }
     
 }

@@ -11,6 +11,7 @@ import Charts
 struct MeasureBarChartView: UIViewRepresentable{
     
     let entries: [BarChartDataEntry]
+    let measure: [Measure]
     func makeUIView(context: Context) -> BarChartView {
         return BarChartView()
     }
@@ -36,17 +37,24 @@ struct MeasureBarChartView: UIViewRepresentable{
     }
     
     func formatDataSet(dataSet: BarChartDataSet){
-        dataSet.colors = [.black]
+        dataSet.colors = [.blue, .darkGray]
         dataSet.valueColors = [.black]
+        dataSet.valueFont = UIFont.systemFont(ofSize: 12)
         let formatter = NumberFormatter()
-        formatter.numberStyle = .none
-        formatter.allowsFloats = true
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
         dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
     }
     
     func formatXAxis(xAxis: XAxis){
-        xAxis.valueFormatter = IndexAxisValueFormatter(values: Measure.getXProperty(measure: Measure.allMeasure))
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: Measure.getXProperty(measure: measure))
+        xAxis.labelFont = .systemFont(ofSize: 10)
+        xAxis.granularityEnabled = true
+        xAxis.granularity = 1
         
+        xAxis.labelCount = 5
+
         xAxis.labelPosition = .bottom
     }
     
@@ -58,6 +66,6 @@ struct MeasureBarChartView: UIViewRepresentable{
 
 struct MeasureBarChartView_Previews: PreviewProvider{
     static var previews: some View {
-        MeasureBarChartView(entries: Measure.dataEntriesFroType("Byceps", measure: Measure.allMeasure))
+        MeasureBarChartView(entries: Measure.dataEntriesFroType(measure: Measure.allMeasure), measure: Measure.allMeasure)
     }
 }

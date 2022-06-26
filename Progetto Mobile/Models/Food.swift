@@ -14,4 +14,11 @@ struct Food: Identifiable{
     let calories: Double
 }
 
-extension Food: Codable, FetchableRecord, PersistableRecord {}
+
+extension Food: Codable, FetchableRecord, PersistableRecord {
+    static let databaseTableName: String = "food"
+}
+
+extension Food: TableRecord {
+    static let foods = hasMany(Food.self)
+}
