@@ -18,25 +18,30 @@ class DietsVM: DataWrapper, ObservableObject {
     @Published var lastIDVisit = ""
     func getIDLastVisit() -> String {
         var visit: Visit?
-        let id = KeychainStorage.getCredentials()!.id
-        do {
-            try  getDatabase().write { db in
-                visit = try Visit
-                                .order(Column("date").desc)
-                                .filter(Column("userID") == id)
-                                .fetchOne(db)
+        if KeychainStorage.getCredentials() != nil {
+            let id = KeychainStorage.getCredentials()!.id
+            do {
+                try  getDatabase().write { db in
+                    visit = try Visit
+                                    .order(Column("date").desc)
+                                    .filter(Column("userID") == id)
+                                    .fetchOne(db)
+                }
+            } catch{
+                print(error)
             }
-        } catch{
-            print(error)
         }
+        
+        
         if visit != nil {
             lastIDVisit = visit!.id
         } else {
             lastIDVisit = "0"
         }
         
-        return visit!.id
+        return lastIDVisit
     }
+    
     
     func loadColazione(visitID: String, language: String, id: Int64 ){
         if(visitID == ""){

@@ -60,7 +60,7 @@ struct CreateNotificationView: View {
                         }
                         .padding(15)
                         .cornerRadius(5)
-                        .background(.gray)
+                        .background(.white.opacity(0))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
                         //Text("Your current date is \(valueDay)")

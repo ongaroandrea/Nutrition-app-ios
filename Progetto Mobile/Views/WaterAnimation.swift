@@ -8,82 +8,20 @@
 import SwiftUI
 
 struct WaterAnimation: View {
-    
-    @State var progress: CGFloat = 0.5
-    @State var phase: CGFloat = 0.0
-    @State var startAnimation: CGFloat = 0
-    var id : String
+    @State private var percent = 50.0
     @State private var viewModel : MisurationVM = MisurationVM()
-    var body: some View {
-        VStack{
-            Spacer()
-            
-            Text("Livello di Idratazione")
-                .foregroundColor(Color("AccentColor"))
-                .font(.title)
-                .bold()
-            
-            Text(String(viewModel.idra))
-                .foregroundColor(Color("AccentColor"))
-                .font(.title)
-                .bold()
-            
-            VStack{
-                GeometryReader{proxy in
-                    let size = proxy.size
-                    ZStack{
-                       
-                        Image(systemName: "figure.wave")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.white)
-                            .offset(y: -1)
-                        
-                        WaterWave(progress: progress, waveHeight: 0.2, offset: startAnimation)
-                            .fill(.cyan)
-                            .overlay(content: {
-                                ZStack{
-                                    Circle()
-                                        .fill(.white.opacity(0.1))
-                                        .frame(width: 15, height: 15)
-                                        .offset(x: -20)
-                                    
-                                    Circle()
-                                        .fill(.white.opacity(0.1))
-                                        .frame(width: 15, height: 15)
-                                        .offset(x: 50, y: 60)
-                                }
-                            })
-                            .mask{
-                                Image(systemName: "figure.wave")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            }
-                            .overlay(alignment: .bottom){}
-                         
-                    }
-                    .frame(width: size.width, height: size.height, alignment: .center)
-                    .onAppear{
-
-                        withAnimation(.linear(duration: 5).repeatForever(autoreverses: false)){
-                            startAnimation = size.width - 10
-                        }
-                    }
-                }
-                .frame(height: 350)
-                
-                
-                Spacer()
+    
+    var id: String
+        var body: some View {
+            VStack {
+                CircleWaveView(percent: Int(self.percent))
             }
             .onAppear(perform: {
                 viewModel.loadHydra(idVisit: id)
+                self.percent = viewModel.idra
             })
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background(Color("Secondary"))
+            .padding(.all)
         }
-        
-    }
     
 }
 
@@ -93,71 +31,72 @@ struct WaterAnimation_Previews: PreviewProvider {
     }
 }
 
-struct WaterWave: Shape {
+struct Wave: Shape {
+
+    var offset: Angle
+    var percent: Double
     
-    var progress: CGFloat
-    var waveHeight: CGFloat
-    var offset: CGFloat
-    
-    var animatableData: CGFloat{
-        get{offset}
-        set{offset = newValue}
+    var animatableData: Double {
+        get { offset.degrees }
+        set { offset = Angle(degrees: newValue) }
     }
     
     func path(in rect: CGRect) -> Path {
+        var p = Path()
+
+        // empirically determined values for wave to be seen
+        // at 0 and 100 percent
+        let lowfudge = 0.02
+        let highfudge = 0.98
         
-        return Path{path in
-            path.move(to: .zero)
-            let progressHeight: CGFloat = (1 - progress) * rect.height
-            let height = waveHeight * rect.height
-            
-            for value in stride(from: 0, to: rect.width, by: 2){
-                
-                let x: CGFloat = value
-                let sine : CGFloat = sin(Angle(degrees: value + offset).radians)
-                let y: CGFloat = progressHeight + (height  * sine)
-                
-                path.addLine(to: CGPoint(x: x, y: y))
-            }
-            
-            path.addLine(to: CGPoint(x: rect.width, y: rect.height))
-            path.addLine(to: CGPoint(x:0, y: rect.height))
+        let newpercent = lowfudge + (highfudge - lowfudge) * percent
+        let waveHeight = 0.025 * rect.height
+        let yoffset = CGFloat(1 - newpercent) * (rect.height - 4 * waveHeight) + 2 * waveHeight
+        let startAngle = offset
+        let endAngle = offset + Angle(degrees: 360)
+        
+        p.move(to: CGPoint(x: 0, y: yoffset + waveHeight * CGFloat(sin(offset.radians))))
+        
+        for angle in stride(from: startAngle.degrees, through: endAngle.degrees, by: 5) {
+            let x = CGFloat((angle - startAngle.degrees) / 360) * rect.width
+            p.addLine(to: CGPoint(x: x, y: yoffset + waveHeight * CGFloat(sin(Angle(degrees: angle).radians))))
         }
+        
+        p.addLine(to: CGPoint(x: rect.width, y: rect.height))
+        p.addLine(to: CGPoint(x: 0, y: rect.height))
+        p.closeSubpath()
+        
+        return p
     }
 }
 
-struct LiquidWave: Shape {
+struct CircleWaveView: View {
     
-    var progress: CGFloat
-    var applitude: CGFloat = 10
-    var waveLenght: CGFloat = 20
-    var phase: CGFloat
+    @State private var waveOffset = Angle(degrees: 0)
+    let percent: Int
     
-    var animatableData: CGFloat{
-        get{phase}
-        set{phase = newValue}
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        
-        var path = Path()
-        
-        let width = rect.width
-        let height = rect.height
-        let midWidth = width / 2
-        let progressHeight = height * ( 1 - progress)
-        path.move(to: CGPoint(x: 0, y: progressHeight))
-        
-        for x in stride(from: 0, to: width + 5, by: 5){
-            let relativeX = x / waveLenght
-            let normalizeLenght = (x  - midWidth) / midWidth
-            let y = progressHeight + sin(phase + relativeX) * applitude * normalizeLenght
-            path.addLine(to: CGPoint(x: x, y: y))
+    var body: some View {
+
+        VStack{
+            Text("\(self.percent)%")
+                .foregroundColor(.black)
+            
+            GeometryReader { geo in
+                    Circle()
+                        .stroke(Color.blue, lineWidth: 0.025 * min(geo.size.width, geo.size.height))
+                        .overlay(
+                            Wave(offset: Angle(degrees: self.waveOffset.degrees), percent: Double(percent)/100)
+                                .fill(Color(red: 0, green: 0.5, blue: 0.75, opacity: 0.5))
+                                .clipShape(Circle().scale(0.92))
+                        )
+            }
+            .aspectRatio(1, contentMode: .fit)
+            .onAppear {
+                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
+                self.waveOffset = Angle(degrees: 360)
+                }
+            }
         }
         
-        path.addLine(to: CGPoint(x: width, y: height))
-        path.addLine(to: CGPoint(x: 0, y: height))
-        
-        return path;
     }
 }

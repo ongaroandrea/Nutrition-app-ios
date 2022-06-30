@@ -150,7 +150,9 @@ struct ProfileView: View {
     @StateObject private var viewModel: UserVM = UserVM()
     var body: some View {
         VStack(spacing: 10) {
-                Image("first")
+                Image("no image")
+                .resizable()
+                .frame(width: 150, height: 150, alignment: .center)
                     .clipShape(Circle())
                     .shadow(radius: 10)
                     .overlay(Circle().stroke(Color("accentColor"), lineWidth: 5))
@@ -172,7 +174,7 @@ struct ProfileView: View {
 
         }
         .onAppear(perform: {
-            print(KeychainStorage.getCredentials()!.id)
+            //print(KeychainStorage.getCredentials()!.id)
             viewModel.setCurrentUser()
         })
         .frame(maxWidth: .infinity, alignment: .center)

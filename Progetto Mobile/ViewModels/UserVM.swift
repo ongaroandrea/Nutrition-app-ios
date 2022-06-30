@@ -66,13 +66,16 @@ class UserVM: DataWrapper, ObservableObject {
     }
     
     func setCurrentUser() {
-        do {
-            _ = try getDatabase().read { db in
-                userLogged = try User.filter(id: KeychainStorage.getCredentials()!.id).fetchOne(db)
+        if  KeychainStorage.getCredentials() != nil {
+            do {
+                _ = try getDatabase().read { db in
+                    userLogged = try User.filter(id: KeychainStorage.getCredentials()!.id).fetchOne(db)
+                }
+            } catch{
+                print(error)
             }
-        } catch{
-            print(error)
         }
+        
     }
     
     func getAllUser() {
@@ -92,7 +95,7 @@ class UserVM: DataWrapper, ObservableObject {
     
     func updateUser(name: String, surname: String, sport: String, password: String, email: String) -> Bool{
         if name == "" || surname == "" || password == "" || email == "" {
-            return false
+            return true
         }
         
         do {

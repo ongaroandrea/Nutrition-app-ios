@@ -10,13 +10,33 @@ import SwiftUI
 struct LogoutView: View {
     @EnvironmentObject private var opdata: OpDat
     var body: some View {
-        Button("Non fare che non ci vediamo più eh") {
-            let result = KeychainStorage.removeCredentials()
-            if result{
-                opdata.currView = .welcome
-            }
+        VStack (spacing: 20){
+            Text("Vuoi veramente uscire?")
+                .foregroundColor(Color("AccentColor"))
+                .font(.title3)
+            Text("Clicca sul bottone in basso.")
+                .font(.body)
             
+            Button{
+                let result = KeychainStorage.removeCredentials()
+                if result{
+                    opdata.currView = .welcome
+                }
+            } label: {
+                Text("Logout")
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
+            }
+            .padding()
+            .background(Color("AccentColor"))
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            
+            Spacer()
         }
+        .padding()
+        
     }
 }
 

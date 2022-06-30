@@ -34,7 +34,7 @@ struct DietsButton: View {
     var text: String
     var icon: String
     var color: Color
-    
+    var giorno: LocalizedStringKey = "giorno"
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
             .foregroundColor(color)
@@ -47,7 +47,7 @@ struct DietsButton: View {
                         .frame(width: 100, height: 100)
                         .aspectRatio(contentMode: .fit)
                         .padding(.bottom, 10)
-                    Text(text)
+                    Text(text + " " + giorno.stringValue())
                         .foregroundColor(.white)
                         .bold()
                     
@@ -68,7 +68,6 @@ struct DietsButtonVertical: View {
     var text: String
     var icon: String
     var color: Color
-    var giorno: LocalizedStringKey = "giorno"
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
             .foregroundColor(color)
@@ -84,14 +83,10 @@ struct DietsButtonVertical: View {
                         .frame(width: 75, height: 75)
                         .aspectRatio(contentMode: .fit)
                         .padding(.bottom, 10)
-                    HStack{
-                        Text(text)
-                            .foregroundColor(.white)
-                            .bold()
-                        Text(giorno.stringValue())
-                            .foregroundColor(.white)
-                            .bold()
-                    }
+                    Text(text)
+                        .foregroundColor(.white)
+                        .bold()
+                    
                 }
             )
     }
@@ -99,6 +94,7 @@ struct DietsButtonVertical: View {
 
 struct DietsButtonVertical_Previews: PreviewProvider {
     static var previews: some View {
-        DietsButtonVertical(text: "1 Giorno", icon: "Fruits", color: .black)
+        let giorno: LocalizedStringKey = "giorno"
+        DietsButtonVertical(text: "1" + giorno.stringValue(), icon: "Fruits", color: .black)
     }
 }

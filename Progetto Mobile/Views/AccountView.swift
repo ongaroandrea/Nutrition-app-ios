@@ -23,6 +23,8 @@ struct AccountView: View {
     private var valori_non_modificati : LocalizedStringKey = "valori_non_modificati"
     private var valori_modificati : LocalizedStringKey = "valori_modificati"
     private var titolo_modifica_dati : LocalizedStringKey = "titolo_modifica_dati"
+    @State var displayText: String = ""
+    @State var titleText: String = ""
     private var impostazioni : LocalizedStringKey = "impostazioni"
     
     var body: some View {
@@ -83,13 +85,14 @@ struct AccountView: View {
                 print(password)
                 
                 let result = viewModel.updateUser(name: nome, surname: cognome, sport: sport, password: password, email: mail)
+                showingAlert = true
                 if(!result){
                     print("Loggato Correttamente")
-                    showingAlert = true
-                    showingAlertError = false
+                    self.displayText = valori_modificati.stringValue()
+                    self.titleText = successo.stringValue()
                 } else {
-                    showingAlert = false
-                    showingAlertError = true
+                    self.displayText = valori_non_modificati.stringValue()
+                    self.titleText = error.stringValue()
                     print("NON")
                 }
             }
@@ -98,14 +101,12 @@ struct AccountView: View {
             .foregroundColor(.white)
             .buttonStyle(.borderedProminent)
             .clipShape(RoundedRectangle(cornerRadius: 15))
-            .alert(isPresented: $showingAlertError) {
-                Alert(title: Text(error.stringValue()), message: Text(valori_non_modificati.stringValue()), dismissButton: .default(Text("Ok!")))
-            }
+
             Spacer()
             
         }
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text(successo.stringValue()), message: Text(valori_modificati.stringValue()), dismissButton: .default(Text("Ok!")))
+            Alert(title: Text(titleText), message: Text(displayText), dismissButton: .default(Text("Ok!")))
         }
         .padding()
         .onAppear(perform: {

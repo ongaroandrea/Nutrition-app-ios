@@ -79,9 +79,11 @@ struct PrimaryButton: View {
         HStack {
             if showImage {
                 Image(systemName: image ?? "person.fill")
+                    .foregroundColor(.teal)
             }
             
             Text(text)
+                .foregroundColor(.teal)
         }
         .padding()
         .padding(.horizontal)

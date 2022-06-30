@@ -10,13 +10,14 @@ import SwiftUI
 struct CalendarView: View {
     
     let textLoc : LocalizedStringKey = "welcome"
+    let calendario : LocalizedStringKey = "calendario"
     @State var isCreatePresented = false
     @StateObject var viewModel: visitVM = visitVM()
     
     var body: some View {
         NavigationView {
             VStack(spacing: 10){
-                Text("Calendario Appuntamenti")
+                Text(calendario.stringValue())
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color("Primary"))

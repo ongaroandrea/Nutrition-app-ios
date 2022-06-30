@@ -38,7 +38,7 @@ struct NotificationView: View {
                     InfoOverlayView(
                         infoMessage: nessuna_notifica.stringValue(),
                         buttonTitle: crea.stringValue(),
-                        systemImageName: "plus.circle",
+                        systemImageName: "plus.circle.fill",
                         action: {
                             isCreatePresented = true
                         }
@@ -69,8 +69,10 @@ struct NotificationView: View {
                         .font(.title2)
                         .bold()
                         .foregroundColor(Color("AccentColor"))
+                        
                     Spacer()
                 }
+                .listRowSeparator(.hidden)
                 ForEach(notificationManager.notifications, id: \.identifier) { notification in
                     HStack {
                         Text(notification.content.title)

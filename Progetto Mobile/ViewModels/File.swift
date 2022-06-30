@@ -275,6 +275,9 @@ class DataWrapper {
                 try Food(id: 18, name: "Pesci di mare", calories: 150.5).insert(db)
                 try Food(id: 19, name: "Patate", calories: 150.5).insert(db)
                 try Food(id: 20, name: "Tisana in tazza", calories: 150.5).insert(db)
+                try Food(id: 21, name: "Frutta", calories: 150.5).insert(db)
+                try Food(id: 23, name: "Pesto di Noci", calories: 150.5).insert(db)
+                try Food(id: 24, name: "Verdure", calories: 150.5).insert(db)
             }
         } catch {
             print(error)
@@ -284,30 +287,26 @@ class DataWrapper {
     func insertFoodUsed(){
         do {
             try self.db!.write { db in
-                try FoodUsed(id: 1, foodID: 2, quantity: 100, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 1, foodID: 2, quantity: 100, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 1, foodID: 2, quantity: 100, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 1, foodID: 3, quantity: 20, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 2, foodID: 13, quantity: 50, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 3, foodID: 21, quantity: 200, visit_state: "Colazione", day: 1, dietsID: 1).insert(db)
                 
-                try FoodUsed(id: 2, foodID: 3, quantity: 100, visit_state: "Merenda1", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 2, foodID: 3, quantity: 100, visit_state: "Merenda1", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 2, foodID: 3, quantity: 100, visit_state: "Merenda1", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 2, foodID: 3, quantity: 100, visit_state: "Merenda1", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 4, foodID: 21, quantity: 200, visit_state: "Merenda1", day: 1, dietsID: 1).insert(db)
                 
-                try FoodUsed(id: 3, foodID: 2, quantity: 100, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 3, foodID: 2, quantity: 100, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 3, foodID: 2, quantity: 100, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 3, foodID: 2, quantity: 100, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 8, foodID: 1, quantity: 180, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 9, foodID: 23, quantity: 50, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 10, foodID: 24, quantity: 250, visit_state: "Pranzo", day: 1, dietsID: 1).insert(db)
                 
-                try FoodUsed(id: 4, foodID: 2, quantity: 100, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 4, foodID: 2, quantity: 100, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 4, foodID: 2, quantity: 100, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 4, foodID: 2, quantity: 100, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 12, foodID: 16, quantity: 30, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 13, foodID: 17, quantity: 30, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 14, foodID: 21, quantity: 200, visit_state: "Merenda2", day: 1, dietsID: 1).insert(db)
                 
-                try FoodUsed(id: 5, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 5, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 5, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 5, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
-                try FoodUsed(id: 5, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 16, foodID: 18, quantity: 250, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 17, foodID: 13, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 18, foodID: 24, quantity: 200, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
+                
+                try FoodUsed(id: 19, foodID: 2, quantity: 100, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
+                try FoodUsed(id: 20, foodID: 18, quantity: 250, visit_state: "Cena", day: 1, dietsID: 1).insert(db)
             }
         } catch {
             print(error)

@@ -37,7 +37,7 @@ struct MeasureBarChartView: UIViewRepresentable{
     }
     
     func formatDataSet(dataSet: BarChartDataSet){
-        dataSet.colors = [.blue, .darkGray]
+        dataSet.colors = [UIColor(.orange), UIColor(.yellow)]
         dataSet.valueColors = [.black]
         dataSet.valueFont = UIFont.systemFont(ofSize: 12)
         let formatter = NumberFormatter()

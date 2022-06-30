@@ -141,6 +141,7 @@ struct HomeView: View {
             }
               .onAppear(perform: {
                   self.viewModel.setCurrentUser()
+                  self.viewModelVisit.getIDLastVisit()
               })
             .navigationBarTitle("")
             .navigationBarHidden(true)

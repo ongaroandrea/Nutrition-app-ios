@@ -14,7 +14,7 @@
 "titolo_3" = "Analisi Composizione Corporea";
 "testo_3" = "Valutazione della composizione corporea con analisi antropo-plicometrica  e  bioimpedenziometrica";
 "contattami" = "Contattami";
-"contattato_giacomo" = "Hai già contattato Giacomo?";
+"contattato_giacomo" = "Sei già registrato?";
 "testo_bottone" = "Entra Pure";
 "testo_risultati" = "Monitora i tuoi risultati";
 "placeholder_scelta_gionrni" = "Scegli il giorno";
@@ -50,6 +50,8 @@
 "valori_modificati" = "I valori sono stati modificati con successo.";
 "valori_non_modificati" = "I valori non sono stati modificati.";
 "titolo_modifica_dati" = "Modifica i tuoi dati";
+"biometrico_titolo" = "Sblocco Biometrico";
+"biometrico_errore" = "Abilitare l'utilizzo del faceID/touchID per questa app nelle impostazioni";
 "impostazioni" = "Impostazioni";
 "nessuna_notifica" = "Nessuna notifica ancora";
 "no_permessi" = "Si prega di abilitare i permessi nell'impostazioni delle app";
@@ -67,3 +69,15 @@
 "tempo" = "Tempo di preparazione";
 "difficolta" = "Difficolta";
 "giorno" = "giorno";
+"colazione" = "Colazione";
+"merenda1" = "Merenda";
+"pranzo" = "Pranzo";
+"merenda2" = "Merenda";
+"cena" = "Cena";
+"dieta_numero_titolo" = "Dieta Giorno";
+"calendario" = "Calendario Appuntamenti";
+"consulto" = "Consulto Periodico";
+"risultati" = "Mostra i risultati > ";
+"aggiungi_calendario" = "Aggiungi al calendario > ";
+"visite" = "Visite";
+"sensazioni" = "Sensazioni";

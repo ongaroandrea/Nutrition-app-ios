@@ -16,45 +16,51 @@ struct RecipeView: View {
 
     var body: some View {
         ScrollView{
-            Image(viewModel.recipe?.image ?? "First")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height:300)
-                .background(LinearGradient(gradient: Gradient(colors: [Color("AccentColor"), .blue]), startPoint: .top, endPoint: .bottom ))
-                .padding(.bottom, 35)
-            VStack(spacing:30){
-                Text(viewModel.recipe?.title ?? "")
-                    .font(.title)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                
-                HStack {
-                    Text(time.stringValue())
-                    Text(viewModel.recipe?.time ?? "")
-                }
-                HStack {
-                    Text(difficolta.stringValue())
-                    ForEach((1...(viewModel.recipe?.difficulty ?? 1)), id: \.self) { _ in
-                        Image(systemName: "star.fill")
-                    }
-                }
-                
-                
-                VStack(alignment: .leading, spacing: 30){
-                    if viewModel.recipe?.description != "" {
-                        Text(viewModel.recipe?.description ?? "")
-                    }
-                }
+            AsyncImage(url: URL(string: "")){ image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                Image(viewModel.recipe?.image ?? "First")
+                    .resizable()
+                    .scaledToFit()
+                    
             }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-
+                
+                VStack(spacing: 30){
+                    Text(viewModel.recipe?.title ?? "")
+                        .font(.title)
+                        .bold()
+                        .multilineTextAlignment(.center)
+                    
+                    VStack(alignment: .leading, spacing: 30){
+                        HStack {
+                            Text(time.stringValue())
+                            Text(viewModel.recipe?.time ?? "")
+                        }
+                        HStack {
+                            Text(difficolta.stringValue())
+                            ForEach((1...(viewModel.recipe?.difficulty ?? 1)), id: \.self) { _ in
+                                Image(systemName: "star.fill")
+                            }
+                        }
+                        if viewModel.recipe?.description != "" {
+                            VStack(alignment: .leading, spacing: 30){
+                                Text(viewModel.recipe?.description ?? "")
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.horizontal)
         }
+        .ignoresSafeArea(.container, edges: .top)
         .onAppear(perform: {
             viewModel.getRecipeByID(idRecipe: id)
                 
         })
-        .ignoresSafeArea()
+        
+        
     }
 }
 

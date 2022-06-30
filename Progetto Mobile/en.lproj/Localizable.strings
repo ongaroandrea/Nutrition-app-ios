@@ -14,7 +14,7 @@
 "titolo_3" = "Body Composition Analysis";
 "testo_3" = "Body composition assessment with anthropo-plicometric and bioimpedance analysis";
 "contattami" = "Contact me";
-"contattato_giacomo" = "Have you already contacted Giacomo?";
+"contattato_giacomo" = "Are you registered?";
 "testo_bottone" = "Come on in";
 "testo_risultati" = "Track your results";
 "placeholder_scelta_gionrni" = "Select the day";
@@ -67,7 +67,18 @@
 "tempo" = "Execution time";
 "difficolta" = "Difficulty";
 "giorno" = "day";
-"biometrico_titolo" = "Sblocco Biometrico";
-"biometrico_errore" = "Abilitare l'utilizzo del faceID/touchID per questa ppa nelle impostazioni";
+"biometrico_titolo" = "Biometric Unlock";
+"biometrico_errore" = "Enable the use of faceID / touchID for this app in the settings";
 "biometrico_body" = "Abilita FaceID/TouchID";
-
+"colazione" = "Breakfast";
+"merenda1" = "Snack";
+"pranzo" = "Lunch";
+"merenda2" = "Snack";
+"cena" = "Dinner";
+"dieta_numero_titolo" = "Diets Day";
+"calendario" = "Appointments Calendar";
+"consulto" = "Periodic Consultation";
+"risultati" = "Show Results > ";
+"aggiungi_calendario" = "Add to Calendar > ";
+"visite" = "Visits";
+"sensazioni" = "Sensations";

@@ -11,11 +11,16 @@ struct CalendarRectangle: View {
     var id: String
     var date: Date
     let now = Date()
-    
+    let consulto : LocalizedStringKey = "consulto"
+    let risultati : LocalizedStringKey = "risultati"
+    let aggiungi_calendario : LocalizedStringKey = "aggiungi_calendario"
     @StateObject var viewModel: visitVM = visitVM()
+    @State var success = false
+    @State var error = false
+    var error_text : LocalizedStringKey = "errore"
+    var success_text : LocalizedStringKey = "successo"
     var body: some View {
         RoundedRectangle( cornerRadius: 10)
-            
             .strokeBorder(.gray, lineWidth: 1)
             .frame(width: 300, height: 135)
             .background(Color("First"))
@@ -23,7 +28,7 @@ struct CalendarRectangle: View {
             .shadow(radius: 5)
             .overlay(
                 VStack(){
-                    Text("Consulto Periodico")
+                    Text(consulto.stringValue())
                         .foregroundColor(Color("TextColor"))
                         .bold()
                     
@@ -31,7 +36,7 @@ struct CalendarRectangle: View {
                     
                     if now > date{
                         NavigationLink(destination: VisitIntro(id: self.id)){
-                            Text("Mostra i risultati > ")
+                            Text(risultati.stringValue())
                                 .foregroundColor(.white)
                                 .padding(10)
                                 .background(.mint)
@@ -42,17 +47,30 @@ struct CalendarRectangle: View {
                             Button{
                                 print("Cerco di aggiungerlo al calendario")
                                 viewModel.generateEvent(id: id)
+                                
+                                if viewModel.status {
+                                    self.error = false
+                                    self.success = true
+                                } else {
+                                    self.error = true
+                                    self.success = false
+                                }
+                                print(viewModel.status)
+                                print(self.success)
                             }
                             label: {
-                                Text("Aggiungi al calendario > ")
+                                Text(aggiungi_calendario.stringValue())
                                     .foregroundColor(.white)
                                     .padding(10)
                                     .background(.mint)
                                     .cornerRadius(10)
                             }
+                            
                             Spacer()
                         }
-                        
+                        .alert(isPresented: $success) {
+                            Alert(title: Text(success_text.stringValue()), message: Text("valori_modificati.stringValue()"), dismissButton: .default(Text("Ok!")))
+                        }
                     }
                 }
                 .padding()
@@ -61,6 +79,10 @@ struct CalendarRectangle: View {
             .padding(.vertical)
             .listRowSeparator(.hidden)
             .frame(maxWidth: .infinity)
+            .alert(isPresented: $error) {
+                Alert(title: Text(error_text.stringValue()), message: Text("valori_modificati.stringValue()"), dismissButton: .default(Text("Ok!")))
+            }
+            
     }
 }
 
